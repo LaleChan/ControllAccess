@@ -1,0 +1,11 @@
+INSERT INTO profesores (nombre, dni, telefono, correo, codigo_qr, materia, fecha_registro, estado) VALUES
+('Juan Perez', '12345678', '+34 600123456', 'juan.perez@gmail.com', 'QR-123456', 'Matemáticas', '2023-02-15', 'activo'),
+('Laura Gomez', '23456789', '+34 600234567', 'laura.gomez@yahoo.com', 'QR-234567', 'Física', '2022-11-20', 'activo'),
+('Carlos Lopez', '34567890', '+34 600345678', 'carlos.lopez@hotmail.com', 'QR-345678', 'Química', '2021-09-10', 'activo'),
+('Maria Fernandez', '45678901', '+34 600456789', 'maria.fernandez@outlook.com', 'QR-456789', 'Historia', '2020-05-05', 'inactivo'),
+('Pedro Ruiz', '56789012', '+34 600567890', 'pedro.ruiz@gmail.com', 'QR-567890', 'Lengua y Literatura', '2023-01-12', 'activo'),
+('Raquel Torres', '67890123', '+34 600678901', 'raquel.torres@yahoo.com', 'QR-678901', 'Biología', '2022-06-22', 'activo'),
+('Luis Martínez', '78901234', '+34 600789012', 'luis.martinez@hotmail.com', 'QR-789012', 'Geografía', '2021-03-18', 'activo'),
+('Sofia Pérez', '89012345', '+34 600890123', 'sofia.perez@outlook.com', 'QR-890123', 'Inglés', '2023-04-05', 'activo'),
+('Eduardo Sánchez', '90123456', '+34 600901234', 'eduardo.sanchez@gmail.com', 'QR-901234', 'Filosofía', '2020-12-25', 'inactivo'),
+('Marta Díaz', '01234567', '+34 600012345', 'marta.diaz@yahoo.com', 'QR-012345', 'Arte', '2022-10-30', 'activo');
