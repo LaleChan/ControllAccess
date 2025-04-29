@@ -1,9 +1,11 @@
 /* Importamos a framework express */
 import express from "express";
 import cors from "cors"
+
 import materiaRoutes from "./routes/materias.route.js"
 import usuarioRoutes from "./routes/usuarios.route.js"
-import salonesRoutes from "./routes/salones.route.js"
+import salonRoutes from "./routes/salones.route.js"
+import profesorRoutes from "./routes/profesores.route.js"
 
 /* Asignamos a app toda funcionalidad para mi server web */
 const app = express();
@@ -19,7 +21,8 @@ app.use(express.json());
 /* routes */
 app.use("/api/materias", materiaRoutes)
 app.use("/api/usuarios", usuarioRoutes)
-app.use("/api/salones", usuarioRoutes)
+app.use("/api/salones", salonRoutes)
+app.use("/api/profesores", profesorRoutes)
 
 /* Hacemos disponible a mi server app para toda la aplicacion */
 export default app;
