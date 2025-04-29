@@ -3,7 +3,7 @@ import getConnection from "./../db/database.js"
 const getMaterias = async (req, res)=>{
     try {
         const connection = await getConnection();
-        const result = await connection.query("SELECT profesor_id, dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id FROM profesores")
+        const result = await connection.query("SELECT permiso_id, usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por FROM permisos_especiales")
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");
@@ -15,7 +15,7 @@ const getMateria = async (req, res)=>{
         console.log(req.params);
         const {id} = req.params
         const connection = await getConnection();
-        const result = await connection.query("SELECT profesor_id, dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id FROM profesores WHERE profesor_id = ?", id)
+        const result = await connection.query("SELECT permiso_id, usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por FROM permisos_especiales WHERE permiso_id = ?", id)
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");
@@ -24,13 +24,13 @@ const getMateria = async (req, res)=>{
 
 const postMaterias = async (req, res) => {
     try {
-        const {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id} = req.body;
+        const {usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por} = req.body;
 
-        const materi = {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id}
+        const materia = {usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por}
         
         const connection = await getConnection();
 
-        const result = await connection.query("INSERT INTO profesores SET ?",materi )
+        const result = await connection.query("INSERT INTO permisos_especiales SET ?",materia )
 
         res.json(result)
     } catch (error) {
@@ -41,13 +41,13 @@ const postMaterias = async (req, res) => {
 const updateMateria = async (req, res) => {
     try {
         const {id} = req.params
-        const {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id} = req.body;
+        const {usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por} = req.body;
 
-        const materi = {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id}
+        const materia = {usuario_id, salon_id, fecha_inicio, fecha_fin, motivo, creado_por}
         
         const connection = await getConnection();
 
-        const result = await connection.query("UPDATE profesores SET ? WHERE profesor_id = ?",[materi, id])
+        const result = await connection.query("UPDATE permisos_especiales SET ? WHERE permiso_id = ?",[materia, id])
 
         res.json(result)
     } catch (error) {
@@ -57,10 +57,10 @@ const updateMateria = async (req, res) => {
 
 const deleteMateria = async (req, res)=>{
     try {
-        console.log("id de profesor", req.params);
+        console.log("id de permisos", req.params);
         const {id} = req.params
         const connection = await getConnection();
-        const result = await connection.query("DELETE FROM profesores WHERE profesor_id = ?", id)
+        const result = await connection.query("DELETE FROM permisos_especiales WHERE permiso_id = ?", id)
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");

@@ -3,7 +3,7 @@ import getConnection from "./../db/database.js"
 const getMaterias = async (req, res)=>{
     try {
         const connection = await getConnection();
-        const result = await connection.query("SELECT profesor_id, dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id FROM profesores")
+        const result = await connection.query("SELECT registro_id, usuario_id, salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo FROM registros_acceso")
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");
@@ -15,7 +15,7 @@ const getMateria = async (req, res)=>{
         console.log(req.params);
         const {id} = req.params
         const connection = await getConnection();
-        const result = await connection.query("SELECT profesor_id, dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id FROM profesores WHERE profesor_id = ?", id)
+        const result = await connection.query("SELECT salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo FROM registros_acceso WHERE registro_id = ?", id)
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");
@@ -24,13 +24,13 @@ const getMateria = async (req, res)=>{
 
 const postMaterias = async (req, res) => {
     try {
-        const {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id} = req.body;
+        const {salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo} = req.body;
 
-        const materi = {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id}
+        const materia = {salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo}
         
         const connection = await getConnection();
 
-        const result = await connection.query("INSERT INTO profesores SET ?",materi )
+        const result = await connection.query("INSERT INTO registros_acceso SET ?",materia )
 
         res.json(result)
     } catch (error) {
@@ -41,13 +41,13 @@ const postMaterias = async (req, res) => {
 const updateMateria = async (req, res) => {
     try {
         const {id} = req.params
-        const {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id} = req.body;
+        const {salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo} = req.body;
 
-        const materi = {dni, nombre, telefono, correo, codigo_qr, materia, fecha_registro, activo, materia_id}
+        const materia = {salon_id, profesor_id, fecha_hora_entrada, fecha_hora_salida, acceso_permitido, motivo_rechazo}
         
         const connection = await getConnection();
 
-        const result = await connection.query("UPDATE profesores SET ? WHERE profesor_id = ?",[materi, id])
+        const result = await connection.query("UPDATE registros_acceso SET ? WHERE registro_id = ?",[materia, id])
 
         res.json(result)
     } catch (error) {
@@ -57,10 +57,10 @@ const updateMateria = async (req, res) => {
 
 const deleteMateria = async (req, res)=>{
     try {
-        console.log("id de profesor", req.params);
+        console.log("id de registro", req.params);
         const {id} = req.params
         const connection = await getConnection();
-        const result = await connection.query("DELETE FROM profesores WHERE profesor_id = ?", id)
+        const result = await connection.query("DELETE FROM registros_acceso WHERE registro_id = ?", id)
         res.json(result);
     } catch (error) {
         console.error("ERROR 500");
