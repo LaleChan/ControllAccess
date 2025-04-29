@@ -1,0 +1,25 @@
+/* Importamos a framework express */
+import express from "express";
+import cors from "cors"
+import materiaRoutes from "./routes/materias.route.js"
+import usuarioRoutes from "./routes/usuarios.route.js"
+import salonesRoutes from "./routes/salones.route.js"
+
+/* Asignamos a app toda funcionalidad para mi server web */
+const app = express();
+
+/* Setear un puerto a mi web server */
+app.set("port",5000)
+
+app.use(cors());
+
+/* Middleware */
+app.use(express.json());
+
+/* routes */
+app.use("/api/materias", materiaRoutes)
+app.use("/api/usuarios", usuarioRoutes)
+app.use("/api/salones", usuarioRoutes)
+
+/* Hacemos disponible a mi server app para toda la aplicacion */
+export default app;
