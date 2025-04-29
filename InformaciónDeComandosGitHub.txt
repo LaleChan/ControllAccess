@@ -1,0 +1,63 @@
+Para subir un archivo a tu repositorio de GitHub, necesitas seguir estos pasos utilizando Git desde la terminal o la línea de comandos. Aquí te dejo una guía rápida de los comandos que necesitas ejecutar.
+
+1. Abre la terminal o línea de comandos.
+
+    CTRL + Ñ
+   
+2. Navega hasta el directorio de tu repositorio local (si no estás ya dentro de él):
+
+    Comandos:
+
+    ls -l (para ver el contenido de la carpeta donde estás)
+    pwd (para ver la ruta donde estás)
+
+   --En el bash--
+   cd ruta/del/repositorio
+   
+
+3. Agrega el archivo al área de preparación (staging area):
+
+   Si el archivo es, por ejemplo, `archivo.sql`, puedes agregarlo de la siguiente manera:
+
+   --En el bash--
+   git add archivo.sql
+   
+
+   Si quieres agregar todos los archivos nuevos o modificados:
+
+   --En el bash--
+   git add .
+   
+
+4. Haz un commit con un mensaje descriptivo:
+
+   --En el bash--
+   git commit -m "Añadir archivo SQL con datos de prueba"
+   
+
+5. Sube los cambios a tu repositorio remoto en GitHub:
+
+   Si es la primera vez que estás subiendo, o si no has configurado el repositorio remoto, puedes hacerlo con:
+
+   --En el bash--
+   git remote add origin https://github.com/LaleChan/ControllAccess
+   
+
+   Luego, para subir el archivo al repositorio:
+
+   --En el bash--
+   git push origin main
+   
+
+   Si estás trabajando en una rama diferente a `main`, sustituye `main` por el nombre de tu rama, como `master`, `develop`, etc.
+
+----Resumen de los comandos:
+
+--En el bash--
+cd ruta/del/repositorio
+git add archivo.sql  # O git add .
+git commit -m "Añadir archivo SQL con datos de prueba"
+git push origin main  # O el nombre de la rama correspondiente
+
+
+¡Con esto deberías poder subir el archivo correctamente! Si tienes alguna pregunta adicional, no dudes en preguntar.
